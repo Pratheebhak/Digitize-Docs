@@ -1,4 +1,4 @@
-# Digitize-Handwritten-Labels
+# Digitize-Handwritten-Labels-on-Botanical-Images
 Handwriting Labels Extraction and Tagging in Herbarium Images
 
 ## Motivation
