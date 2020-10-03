@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "pratheebha-karuppusamy-9222020",
+  "private_key_id": "cdb465ac7042ce7c40d5552dcb3cbc597dda78a1",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCh8lTlNsWGVfbr\n/8CuWiEBvXz0RoaGcTEbcd3zlQXrUSmqEmwHG3wUb9EaOAJvX8rLhWBlNhmKMMCE\nVAAZK2dD3qtKVm96l1wrvcvREb5uAoUgWvfUCjGhqaRpvQlTHjIY7hom9VTblrhL\nLkUD4CCaLpNxjV0KsUlx+9WDwFle6z4K3HtIXLZZJWDF/D33iayyi2pTsFclTZnH\nZ4fUyd7FjanFyVHlPL6OJrVaT2LLTsayhpC17jnSLUgLT+nmXQx9sG0z46dseXPd\nQNx1RE69QBeTMiDV43ZnP0AnPxMwqAtUShihviJHUaeBV1im5aSowBfEkgQ4p5RA\nd37I/B/RAgMBAAECggEALvIGtiN4gwase6E6A9DQvKZncJB5MsPhTmllw9SxUJPI\nliqc8jp/b5Uycn1GB28nZHQXi39xS+PyCuom1SUF3GDSGsyPqGP0LiHo0YRpRY6p\ndMWqDeeel5SLurM33sZkE2ICZsS7gqRgbDrPet4f1VInH8Ww8QaPmeE89eJuhdsJ\nP/IEuwjtm2R5T8A/PyD9z9i8mhDx+wyttvb8xEcMvOneatXR8krHzwDjh9ahYoJa\nh3wvDXfbST4BbD5XfK2eKut7u74PReTa0+YoS/DP0DvomZIz9mhAqMsFzLBa3+ir\n7afTKJ0jdqZuBOvn7DmMbiDoEByZ84hFKAEEKFL5+QKBgQDdGKHoqb0MuTPk+b0G\nxRDKuM1okoCZa/vF++izeEFTjHB+IlfC428JAq5L6hhhlhRGpcF9MrmOLOgM1xQ1\nM+sej4CWh2F60+HXbZY3SDDVDJE12sUAt/RHc4bdlYLEMsOmrZQ94OwFPIOqpn2N\nzWcTtxCBF8wgw4rUebMxGJoyCwKBgQC7gzsTX55jJUq0y2P2Vh/FzSHZ8Dh/0cEs\n3sFfis8xj21iH020TftjbjFq9va2RWAOBpawC0PcONUVHrrqGT7EOzA1ApAzmo7Q\nylBVGw7zdsw/B2723/kPTGQF3U1Hk7ABENf2ZfDPBjKVdKgVtyq+AlmdZhLbgV8l\nKM8wbhHbEwKBgHeXUFSiI4ETWG+dalKUG54b0fejbu4Ny7TuqpMRE/zWNS708pWX\nIcM08QRdDm0SmcsQ85T98AJoZeg0GlkgySfRpVNGzUJ8A2fcfelPIiLLVmxT9kWK\nOxa+9Y87xOzNLKkmsM27sM6wSePvhHBET2IJnmLFdYOvYZPGdFe1IAq7AoGADWBA\nH5KrlsD7Qkhb+h+MpqyKZKSJMz0APbYqLymUvCFSGTTIczs42o/qwImbcccjIf0A\nVNCI57W6JYaKqNZiLtdWCgIDzVqSI3y7HEcQ2vc3fKuIE95IQvodDHoL4DY90OWl\nsjL1aZ80jorCzsHBL8q1H9A/Oh9RbTIrDXZcmbcCgYAZl1Fnkj2mk1PPSWbQzLln\nhPWUEq9RZKMCjIBwb5mRAppe42au32zJsmpgUf9m/YDiHeFujF5eBxZYYoGJ8Lq2\nEZQfKJ+PmVVpM93vug2zWak4FCCKT4WdkUW2tcvsCUVyK894qnF0Ach714PZzHEY\nMWqetozT56eeoUeaZpHG6g==\n-----END PRIVATE KEY-----\n",
+  "client_email": "ocr-96@pratheebha-karuppusamy-9222020.iam.gserviceaccount.com",
+  "client_id": "109651411843859094696",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/ocr-96%40pratheebha-karuppusamy-9222020.iam.gserviceaccount.com"
+}
