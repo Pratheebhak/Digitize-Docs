@@ -1,0 +1,116 @@
+altair==4.1.0
+argon2-cffi @ file:///tmp/build/80754af9/argon2-cffi_1596828493937/work
+astor==0.8.1
+attrs @ file:///tmp/build/80754af9/attrs_1600298409949/work
+backcall==0.2.0
+base58==2.0.1
+bleach @ file:///tmp/build/80754af9/bleach_1600439572647/work
+blinker==1.4
+blis==0.4.1
+boto3==1.15.8
+botocore==1.18.8
+brotlipy==0.7.0
+cachetools==4.1.1
+catalogue==1.0.0
+certifi==2020.6.20
+cffi @ file:///home/conda/feedstock_root/build_artifacts/cffi_1600276411373/work
+chardet @ file:///home/conda/feedstock_root/build_artifacts/chardet_1600358500179/work
+click==7.1.2
+cryptography @ file:///home/conda/feedstock_root/build_artifacts/cryptography_1600960155296/work
+cymem @ file:///home/conda/feedstock_root/build_artifacts/cymem_1591801099081/work
+decorator==4.4.2
+defusedxml==0.6.0
+en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.3.1/en_core_web_sm-2.3.1.tar.gz
+entrypoints==0.3
+enum-compat==0.0.3
+google-api-core==1.22.2
+google-auth==1.21.3
+google-cloud-vision==1.0.0
+googleapis-common-protos==1.52.0
+grpcio==1.32.0
+idna @ file:///home/conda/feedstock_root/build_artifacts/idna_1593328102638/work
+importlib-metadata @ file:///tmp/build/80754af9/importlib-metadata_1593446406207/work
+imutils==0.5.3
+ipykernel @ file:///tmp/build/80754af9/ipykernel_1596207638929/work/dist/ipykernel-5.3.4-py3-none-any.whl
+ipython @ file:///tmp/build/80754af9/ipython_1598883821407/work
+ipython-genutils==0.2.0
+ipywidgets==7.5.1
+jedi @ file:///tmp/build/80754af9/jedi_1598371611696/work
+jellyfish==0.8.2
+Jinja2==2.11.2
+jmespath==0.10.0
+jsonschema==3.2.0
+jupyter==1.0.0
+jupyter-client @ file:///tmp/build/80754af9/jupyter_client_1594826976318/work
+jupyter-console @ file:///tmp/build/80754af9/jupyter_console_1598884538475/work
+jupyter-core==4.6.3
+MarkupSafe==1.1.1
+mistune==0.8.4
+mkl-fft==1.2.0
+mkl-random==1.1.1
+mkl-service==2.3.0
+murmurhash==1.0.0
+nbconvert==5.6.1
+nbformat==5.0.7
+notebook @ file:///tmp/build/80754af9/notebook_1596838629813/work
+numpy @ file:///tmp/build/80754af9/numpy_and_numpy_base_1596233721170/work
+olefile==0.46
+packaging==20.4
+pandas @ file:///tmp/build/80754af9/pandas_1598371468004/work
+pandocfilters==1.4.2
+parso==0.7.0
+pathtools==0.1.2
+pexpect==4.8.0
+pickleshare==0.7.5
+Pillow @ file:///tmp/build/80754af9/pillow_1594307295532/work
+plac @ file:///tmp/build/80754af9/plac_1594261900949/work
+preshed @ file:///home/conda/feedstock_root/build_artifacts/preshed_1591802135072/work
+prometheus-client==0.8.0
+prompt-toolkit @ file:///tmp/build/80754af9/prompt-toolkit_1598885458782/work
+protobuf==3.13.0
+ptyprocess==0.6.0
+pyarrow==1.0.1
+pyasn1==0.4.8
+pyasn1-modules==0.2.8
+pycparser @ file:///tmp/build/80754af9/pycparser_1594388511720/work
+pydeck==0.5.0b1
+Pygments @ file:///tmp/build/80754af9/pygments_1600458456400/work
+pyOpenSSL==19.1.0
+pyparsing==2.4.7
+PyQt5==5.12.3
+PyQt5-sip==4.19.18
+PyQtChart==5.12
+PyQtWebEngine==5.12.1
+pyrsistent @ file:///tmp/build/80754af9/pyrsistent_1600141720057/work
+PySocks==1.7.1
+python-dateutil==2.8.1
+pytz==2020.1
+pyzmq==19.0.2
+qtconsole @ file:///tmp/build/80754af9/qtconsole_1600870028330/work
+QtPy==1.9.0
+requests @ file:///home/conda/feedstock_root/build_artifacts/requests_1592425495151/work
+rsa==4.6
+s3transfer==0.3.3
+Send2Trash==1.5.0
+sip==4.19.13
+six==1.15.0
+spacy @ file:///home/conda/feedstock_root/build_artifacts/spacy_1594659152194/work
+srsly @ file:///home/conda/feedstock_root/build_artifacts/srsly_1589222428033/work
+streamlit==0.67.1
+terminado==0.8.3
+testpath==0.4.4
+thinc @ file:///home/conda/feedstock_root/build_artifacts/thinc_1590400407750/work
+toml==0.10.1
+toolz==0.11.1
+tornado==6.0.4
+tqdm @ file:///home/conda/feedstock_root/build_artifacts/tqdm_1599956693194/work
+traitlets==4.3.3
+tzlocal==2.1
+urllib3 @ file:///home/conda/feedstock_root/build_artifacts/urllib3_1595434816409/work
+validators==0.18.1
+wasabi @ file:///home/conda/feedstock_root/build_artifacts/wasabi_1600272362626/work
+watchdog==0.10.3
+wcwidth @ file:///tmp/build/80754af9/wcwidth_1593447189090/work
+webencodings==0.5.1
+widgetsnbextension==3.5.1
+zipp==3.1.0
