@@ -1,3 +1,10 @@
+"""
+Title       : detect.py
+Definition  : Detect text labels in the input image
+Input       : image URL
+Output      : raw OCR text
+"""
+
 import argparse
 import os
 import platform
@@ -44,10 +51,10 @@ def detect():
         shutil.rmtree(out)  # delete output folder
     os.makedirs(out)  # make new output folder
     # half = device.type != 'cpu'  # half precision only supported on CUDA
-    det = 'inference/detection'
-    if os.path.exists(det):
-        shutil.rmtree(det)  # delete output folder
-    os.makedirs(det)
+    detpath = 'inference/detection'
+    if os.path.exists(detpath):
+        shutil.rmtree(detpath)  # delete output folder
+    os.makedirs(detpath)
 
     # Load model
     model = attempt_load(weights, map_location=device)  # load FP32 model
@@ -124,15 +131,17 @@ def detect():
                         plot_one_box(xyxy, im0, label=label, color=colors[int(cls)], line_thickness=3)
 
                     if save_obj:
+                        # cv2.imwrite(detpath, im0)
                         for k in range(len(det)):
-                            x,y,w,h=int(xyxy[0]), int(xyxy[1]), int(xyxy[2] - xyxy[0]), int(xyxy[3] - xyxy[1])                   
-                            img_ = im0.astype(np.uint8)
-                            crop_img=img_[y:y+ h, x:x + w]                          
+                            if int(cls) == 0:
+                                x,y,w,h=int(xyxy[0]), int(xyxy[1]), int(xyxy[2] - xyxy[0]), int(xyxy[3] - xyxy[1])                   
+                                img_ = im0.astype(np.uint8)
+                                crop_img=img_[y:y+ h, x:x + w]                          
                                 
-                            #!!rescale image !!!
-                            filename = label+ '{:}.jpg'.format(+1)
-                            filepath=os.path.join(r'./inference/detection/', filename)
-                            cv2.imwrite(filepath, crop_img) 
+                                #!!rescale image !!!
+                                filename = label+ '{:}.jpg'.format(+1)
+                                filepath=os.path.join(r'./inference/detection/', filename)
+                                cv2.imwrite(filepath, crop_img) 
 
             # Print time (inference + NMS)
             print('%sDone. (%.3fs)' % (s, t2 - t1))
@@ -147,6 +156,7 @@ def detect():
             if save_img:
                 if dataset.mode == 'images':
                     cv2.imwrite(save_path, im0)
+                    
 
     if save_txt or save_img:
         print('Results saved to %s' % Path(out))

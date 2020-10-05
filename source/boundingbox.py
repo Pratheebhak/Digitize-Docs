@@ -9,16 +9,14 @@ from google.cloud import vision
 from google.cloud.vision import types
 from PIL import Image, ImageDraw
 from enum import Enum
-import requests
-from io import BytesIO
-from urllib.request import urlopen
 import re
+from fuzzywuzzy import fuzz 
 
 # Google Cloud Credentials
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.path.expanduser("/home/pratheebhak/Documents/biotag/pratheebha-karuppusamy-9222020-cdb465ac7042.json")
 
 
-def generateboundingbox(url, entities):
+def generateboundingbox(image, content, entities):
 
  
     def drawBoxes(image, bounds, color):
@@ -51,15 +49,13 @@ def generateboundingbox(url, entities):
         WORD = 4
         SYMBOL = 5
 
-    def getTextandBounds(imageURL):
+    def getTextandBounds(content):
         """
         Extract text and corresponding bounding box coordinates
         """
     
         client = vision.ImageAnnotatorClient()
-
-        image = vision.types.Image()
-        image.source.image_uri = imageURL
+        image = vision.types.Image(content=content)            
 
         response = client.document_text_detection(image=image)
         document = response.full_text_annotation
@@ -97,20 +93,20 @@ def generateboundingbox(url, entities):
         box = []
         for entity in entities:
             for token in text:
-                if entity == token[0]:
+                if fuzz.partial_ratio(entity, token) > 95:
                     box.append(token[1])
 
         return box
 
         textBounds = getTextandBounds()
         
-    textBoxes = getTextandBounds(url)
+    textBoxes = getTextandBounds(content)
     bounds = getBounds(entities, textBoxes)
 
-    with BytesIO(urlopen(url).read()) as file:
-        inputImage = Image.open(file)
-        inputImage = inputImage.convert("RGBA")
+    # with BytesIO(urlopen(url).read()) as file:
+    #     inputImage = Image.open(file)
+    #     inputImage = inputImage.convert("RGBA")
     
-    outImage = drawBoxes(inputImage, bounds, "blue")
+    outImage = drawBoxes(image, bounds, "blue")
 
     return outImage

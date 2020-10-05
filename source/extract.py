@@ -9,6 +9,7 @@ import spacy
 import pandas as pd
 import re
 import jellyfish
+from fuzzywuzzy import fuzz
 
 def handwrittenText(rawText, cleanText):
 
@@ -114,8 +115,6 @@ def handwrittenText(rawText, cleanText):
 
         genusMatch = findGenus(text, lev_dist_thresh, dontmatch = [])
         genus = genusMatch[1]
-        
-        
 
         if genus:
             incorrectGenus = []
@@ -157,6 +156,12 @@ def handwrittenText(rawText, cleanText):
                 if re.search(r"^\w+\s\w\.\s\w+", ent.text):
                     # collectors.append(re.search(r"\w+\w\.\s\w+", ent.text).group())
                     collectors.append(ent.text)
+                if re.search(r"^coll", ent.text):
+                    # collectors.append(re.search(r"\w+\w\.\s\w+", ent.text).group())
+                    collectors.append(ent.text)
+                if re.search(r"^Coll", ent.text):
+                    # collectors.append(re.search(r"\w+\w\.\s\w+", ent.text).group())
+                    collectors.append(ent.text)
                 
 
         return list(set(collectors))
@@ -181,10 +186,10 @@ def handwrittenText(rawText, cleanText):
   
         for token in text1:
             for country in countries:
-                if token == country:
+                if fuzz.ratio(token,country) > 95:
                     geography.append(token)
             for state in states:
-                if token == state:
+                if fuzz.ratio(token,state) > 95:
                     geography.append(token+" US")
   
         return list(set(geography))
