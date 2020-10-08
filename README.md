@@ -8,7 +8,7 @@ Museums are manually digitizing millions of imaged documents of Herbarium sheets
 ## Installation
 
 Clone the github repository and set biotag as the working directory.
-> git clone https://github.com/Pratheebhak/biotag.git 
+> git clone https://github.com/Pratheebhak/biotag.git   
 > cd ./biotag
 
 ### Requisites
