@@ -1,0 +1,21 @@
+# Crete the Base Image
+FROM python:3.8.5
+
+# Make a working directory of the app
+WORKDIR /biotag-docker
+
+# Copy all the files from local directory/repository to the container
+COPY . .
+COPY requirements.txt .
+
+# Fetch app specific dependencies
+RUN apt-get update && apt-get install -y 
+RUN apt-get -y install python-pip
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expose Streamlit port 8501
+EXPOSE 8501
+
+# Run the command
+CMD ["streamlit", "run", "app.py"]

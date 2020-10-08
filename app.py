@@ -1,9 +1,9 @@
 import os
 import streamlit as st
-import source.detect as detect
-import source.ocr as ocr
-import source.extract as extract
-import source.boundingbox as box
+import biotag.detect as detect
+import biotag.ocr as ocr
+import biotag.extract as extract
+import biotag.boundingbox as box
 import requests 
 import shutil 
 from PIL import Image
@@ -12,10 +12,15 @@ import io
 
 
 def main():
-  st.markdown("<h1 style='text-align: center;'>&lt;&#47;biotag&gt; </h1>", unsafe_allow_html=True)
-  st.markdown("<h3 style='text-align: center;'>Handwritten Label Extraction and Tagging on Botanical Images</h1>", unsafe_allow_html=True)
+  # st.markdown("<h1 style='text-align: center;'>&lt;&#47;biotag&gt; </h1>", unsafe_allow_html=True)
+  # st.markdown("<h3 style='text-align: center;'>Handwritten Label Extraction and Tagging on Botanical Images</h1>", unsafe_allow_html=True)
  
-
+  st.title("</biotag>")
+  st.header("Handwritten Label Extraction on Botanical Images")
+  st.write("</biotag> detects the handwritten plant specimen labels on botanical images, \
+    converts the imaged text into digital format and \
+    extracts and categorizes useful information in the text.")
+    
   # Input the image url
   url = st.sidebar.text_input("Enter image URL:")
 
@@ -35,7 +40,7 @@ def main():
       filename = "inference/output/*.jpg"
       image = Image.open(filename)
       imageList.append(image)
-      st.image(image, width=400, channel='RGB')
+      st.image(image, width=500, channel='RGB')
       with io.open(filename, 'rb') as imageFile:
         contentList.append(imageFile.read())
 
@@ -51,6 +56,7 @@ def main():
     # st.subheader("Detected Text Labels in the Input Image")
     # st.subheader("Handwritten Text Detection using OCR")
     for image, content in zip(imageList, contentList):
+      st.subheader("Detected Text Label")
       st.image(image, width=400, channel='RGB', caption='Detected Text Labels in the Input Image')
       raw, clean = ocr.handwrittenOCR(content)
       st.subheader("Extracted entities:")
@@ -62,6 +68,7 @@ def main():
 
       entities = list(genus) + list(species) + list(collector) + list(geography)
       boxImage = box.generateboundingbox(image, content, entities)
+      st.subheader("Tagged entities")
       st.image(boxImage, width=500, channels='BGR')
 
 
