@@ -2,7 +2,7 @@
 FROM python:3.8.5
 
 # Make a working directory of the app
-WORKDIR /biotag-docker
+WORKDIR /biotag-streamlit
 
 # Copy all the files from local directory/repository to the container
 COPY . .
