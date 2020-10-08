@@ -8,7 +8,7 @@ Museums are manually digitizing millions of imaged documents of Herbarium sheets
 ## Installation
 
 Clone the github repository and set biotag as the working directory.
-> git clone 
+> git clone   
 > cd ./biotag
 
 ### Requisites
@@ -21,9 +21,9 @@ This repository has the following dependencies:
 
 Create a conda virtual environment and install the dependencies
 
-> conda create-n biotag python=3
-> conda activate insight
-> pip install -r requirements.txt
+> conda create-n biotag python=3   
+> conda activate insight   
+> pip install -r requirements.txt   
 
 ### Run
 
