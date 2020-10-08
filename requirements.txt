@@ -1,10 +1,10 @@
+torch==1.6.0
 google-cloud-vision==1.0.0
 imutils==0.5.3
 scipy==1.5.2
 torchvision==0.7.0
 requests==2.24.0
 tqdm==4.49.0
-torch==1.6.0
 jellyfish==0.8.2
 spacy==2.3.2
 numpy==1.19.1
@@ -12,7 +12,7 @@ fuzzywuzzy==0.18.0
 matplotlib==3.3.2
 pandas==1.1.1
 streamlit==0.67.1
-coremltools==3.4
+coremltools
 onnx==1.7.0
 Pillow==7.2.0
 protobuf==3.13.0

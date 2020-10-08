@@ -1,18 +1,26 @@
-# Crete the Base Image
-FROM python:3.8.5
+# Create the Base Image
+FROM python:3.8.5-slim
 
-# Make a working directory of the app
-WORKDIR /biotag-streamlit
+# Copy requirements.txt file to the woking directory 
+COPY requirements.txt /app/
+WORKDIR /app
 
-# Copy all the files from local directory/repository to the container
-COPY . .
-COPY requirements.txt .
-
-# Fetch app specific dependencies
 RUN apt-get update && apt-get install -y 
-RUN apt-get -y install python-pip
-RUN pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
+COPY . /app
+
+
+# # Make a working directory of the app
+# WORKDIR /var/app
+
+# # Copy all the files from local directory/repository to the container
+# COPY . .
+# COPY requirements.txt .
+
+# # Fetch app specific dependencies
+# RUN apt-get update && apt-get install -y 
+# RUN pip install --upgrade pip
+# RUN pip install -r requirements.txt
 
 # Expose Streamlit port 8501
 EXPOSE 8501
