@@ -22,7 +22,7 @@ This repository has the following dependencies:
 Create a conda virtual environment and install the dependencies
 
 > conda create-n biotag python=3   
-> conda activate insight   
+> conda activate biotag   
 > pip install -r requirements.txt   
 
 ### Run
