@@ -1,4 +1,4 @@
-# Digitize-Handwritten-Labels-on-Botanical-Images
+# biotag
 Handwritten Labels Extraction and Tagging in Herbarium Images
 
 ## Motivation
