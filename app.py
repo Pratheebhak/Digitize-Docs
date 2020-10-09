@@ -12,9 +12,7 @@ import io
 
 
 def main():
-  # st.markdown("<h1 style='text-align: center;'>&lt;&#47;biotag&gt; </h1>", unsafe_allow_html=True)
-  # st.markdown("<h3 style='text-align: center;'>Handwritten Label Extraction and Tagging on Botanical Images</h1>", unsafe_allow_html=True)
- 
+  
   st.title("</biotag>")
   st.header("Handwritten Label Extraction on Botanical Images")
   st.write("</biotag> detects the handwritten plant specimen labels on botanical images, \
@@ -52,24 +50,34 @@ def main():
         path = (os.path.abspath(filename))
         with io.open(path, 'rb') as imageFile:
           contentList.append(imageFile.read()) 
+    
+    model = extract.handwrittenText()
 
-    # st.subheader("Detected Text Labels in the Input Image")
-    # st.subheader("Handwritten Text Detection using OCR")
-    for image, content in zip(imageList, contentList):
-      st.subheader("Detected Text Label")
+    st.subheader("Detected Text Label")
+    for image, content in zip(imageList, contentList):      
       st.image(image, width=400, channel='RGB', caption='Detected Text Labels in the Input Image')
-      raw, clean = ocr.handwrittenOCR(content)
+      ocrtext, text = ocr.handwrittenOCR(content)
+      st.write("OCR Text: ", ocrtext)
+      st.write("Processed OCR Text: ", ' '.join([word for word in text]))
       st.subheader("Extracted entities:")
-      barcode, year, genus, species, collector, geography = extract.handwrittenText(raw, clean)
 
+      rawtext = ' '.join([val for val in ocrtext])
+      # barcode, year, genus, species, collector, geography = extract.handwrittenText(ocrtext, text)
+      year = model.findYear(text)
+      collector = model.findCollector(ocrtext)
+      geography = model.findGeography(rawtext)
+      genus, species = model.findScientificName(text)
       st.write("Scientific Name: ", genus + " " + species)
       st.write("Collector: ", ','.join([val for val in collector]))
       st.write("Geography: ", ','.join([val for val in geography]))
+      st.write("Year: ", ','.join([val for val in year]))
+    
+      
 
-      entities = list(genus) + list(species) + list(collector) + list(geography)
-      boxImage = box.generateboundingbox(image, content, entities)
-      st.subheader("Tagged entities")
-      st.image(boxImage, width=500, channels='BGR')
+      # entities = list(genus) + list(species) + list(collector) + list(geography)
+      # boxImage = box.generateboundingbox(image, content, entities)
+      # st.subheader("Tagged entities")
+      # st.image(boxImage, width=500, channels='BGR')
 
 
 

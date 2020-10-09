@@ -46,7 +46,7 @@ def handwrittenOCR(content):
 
             response = client.document_text_detection(image=image)
             document = response.full_text_annotation
-            # text = document.text
+            textdoc = document.text
 
             # ocr = []
             # keys = ['description', 'boundingBox', 'confidence', 'entity']
@@ -75,28 +75,29 @@ def handwrittenOCR(content):
                         text.append(para)
                 # chunks['description'] = para
                 # ocr.append([chunks])
-            return text
+            return text, textdoc
 
         except Exception as e:
             print(e)
-            return None
+            return None, None
 
     def processText(rawText):
         """
         Preprocess the raw OCR text for fuzzymatching/entity recognition
         """
-        text = rawText.lower()
+        text = ' '.join([string for string in rawText])
+        text = text.lower()
         text = re.sub(r'[^\w\s]', ' ', text)  
         text = text.split() 
-        # Remove the irrelevant information from the color palette in images
-        irrelevantList = ['0','1','2','3','4','5','6','7','8','9','10','cm','copyright','provided','is','the','a','by','harvard','herbarium',
-                    'university','reserved']
-        text = [string for string in text if string not in irrelevantList]
+        # # Remove the irrelevant information from the color palette in images
+        # irrelevantList = ['0','1','2','3','4','5','6','7','8','9','10','cm','copyright','provided','is','the','a','by','harvard','herbarium',
+        #             'university','reserved']
+        # text = [string for string in text if string not in irrelevantList]
         return text
 
     
-    rawOCRText= ocrText(content)
-    rawText = ' '.join([line for line in rawOCRText])
-    cleanOCRText = processText(rawText)
+    textpara, textdoc = ocrText(content)
+    cleanText = processText(textpara)
+   
 
-    return rawText, cleanOCRText
+    return  textdoc, cleanText

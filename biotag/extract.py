@@ -11,16 +11,13 @@ import re
 import jellyfish
 from fuzzywuzzy import fuzz
 
-def handwrittenText(rawText, cleanText):
-
-    # x = cleanText
-    # y = rawText
+class handwrittenText:
 
     nlp = spacy.load('en_core_web_sm')
 
     # Load the input data into dataframes
-    dfGenus = pd.read_csv('/home/pratheebhak/Documents/biotag/data/genus_combined.txt', header=None)
-    dfSpecies = pd.read_csv('/home/pratheebhak/Documents/biotag/data/plant_species.csv')
+    dfGenus = pd.read_csv('data/genus_combined.txt', header=None)
+    dfSpecies = pd.read_csv('data/plant_species.csv')
 
     # Preprocess the textual information in the dataframes
     dfGenus.columns = ["genus"]
@@ -30,7 +27,11 @@ def handwrittenText(rawText, cleanText):
     genusList = dfGenus["genus"].to_list()
 
     dfSpecies["species"] = dfSpecies["species"].str.lower()
+    speciesset = set(dfSpecies["species"].dropna().unique().tolist())
+    speciesList = list(speciesset)
     dfSpecies["genus"] = dfSpecies["genus"].str.lower()
+
+    
 
     # Create a dictionary using the dataframes
     # key   : genus
@@ -51,7 +52,7 @@ def handwrittenText(rawText, cleanText):
     states = [x.lower() for x in states]    
     
     
-    def findBarcode(text):
+    def findBarcode(self, text):
         """
         Extract barcode(s) from the processed text
         """
@@ -63,7 +64,7 @@ def handwrittenText(rawText, cleanText):
                 barcodes.append(string)
         return barcodes
 
-    def findYear(text):
+    def findYear(self, text):
         """
         Extract year(s) from the processed text
         """
@@ -77,19 +78,20 @@ def handwrittenText(rawText, cleanText):
         
         return list(set(years))
 
-    def findScientificName(text, dictionary):
+    def findScientificName(self, text):
         """
         Extract scientific name(s) (genus + species) from the processed text
         """
-        names = dictionary
-        def getGenus(dictionary):
-            return list(dictionary.keys())
+        names = self.namesDictionary
+
+        # def getGenus(dictionary):
+        #     return list(dictionary.keys())
 
         def conf(match):
             return match[2]
 
-        def findGenus(text, threshold, dontmatch=[], dictionary=dictionary):
-            genus = getGenus(dictionary)
+        def findGenus(text, threshold, dontmatch=[]):
+            genus = self.genusList
             genusConfidence = []
             for token in text:
                 if token in dontmatch:
@@ -101,8 +103,8 @@ def handwrittenText(rawText, cleanText):
             genusMatch = min(genusConfidence+none, key=conf)
             return genusMatch
 
-        def findSpecies(text, genusMatch, threshold, dictionary=dictionary):
-            species = dictionary[genusMatch[1]]
+        def findSpecies(text, genusMatch, threshold, dictionary=self.namesDictionary):
+            species = self.speciesList
             speciesConfidence = []
             idx = text.index(genusMatch[0])
             if idx < len(text) - 1:
@@ -111,7 +113,7 @@ def handwrittenText(rawText, cleanText):
             none = [[None, None, threshold]]
             speciesMatch = min(speciesConfidence+none, key=conf)
             return speciesMatch
-
+            
         lev_dist_thresh = 3
 
         genusMatch = findGenus(text, lev_dist_thresh, dontmatch = [])
@@ -137,11 +139,11 @@ def handwrittenText(rawText, cleanText):
 
         return genus, species
 
-    def findCollector(text):
+    def findCollector(self, text):
         """
         Extract the collector's name from the OCR text using NER tags and pattern matching
         """
-        doc = nlp(str(text))
+        doc = self.nlp(str(text))
         collectors = []
         for ent in doc.ents:
             if ent.label_ == "PERSON":
@@ -165,41 +167,40 @@ def handwrittenText(rawText, cleanText):
                     collectors.append(ent.text)
                 
 
-        return list(set(collectors))
+        return collectors
 
-    def findGeography(text):
+    def findGeography(self, text):
         """
         Extract the collector's name from the OCR text using NER tags and pattern matching
         """
         
         text = ' '.join([x for x in text])
-        doc = nlp(text)
+        doc = self.nlp(text)
         geography = []
-        for ent in doc.ents:
-    
+        for ent in doc.ents:    
             if ent.label_ == "GPE" or ent.label_ == "LOC":
-                if ent.text.lower() in countries:
+                if ent.text.lower() in self.countries:
                     geography.append(ent.text)
-                if ent.text.lower() in states:
+                if ent.text.lower() in self.states:
                     geography.append(ent.text+" US")
 
         text1 = text.split()
   
         for token in text1:
-            for country in countries:
+            for country in self.countries:
                 if fuzz.ratio(token,country) > 95:
                     geography.append(token)
-            for state in states:
+            for state in self.states:
                 if fuzz.ratio(token,state) > 95:
                     geography.append(token+" US")
   
         return list(set(geography))
 
-    barcode = findBarcode(cleanText)
-    years = findYear(cleanText)
-    genus, species = findScientificName(cleanText, namesDictionary)
-    collector = findCollector(rawText)
-    geography = findGeography(rawText)
+    # barcode = findBarcode(cleanText)
+    # years = findYear(cleanText)
+    # genus, species = findScientificName(textlist, namesDictionary)
+    # collector = findCollector(rawText)
+    # geography = findGeography(rawText)
 
-    return barcode, years, genus, species, collector, geography
+    # return barcode, years, genus, species, collector, geography
 
