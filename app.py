@@ -1,4 +1,4 @@
-""" Streamlit app for the model """
+""" Streamlit app for the biotag model """
 
 import os
 import streamlit as st
