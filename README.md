@@ -1,4 +1,4 @@
-# biotag
+# \<biotag\>
 Handwritten Labels Extraction and Tagging in Herbarium Images
 
 ## Motivation
