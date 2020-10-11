@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 """ boundingbox.py : Generate bounding box coordinates for the extracted entities """
+=======
+""" Generate bounding box coordinates for the extracted entities """
+>>>>>>> Update DockerFile
 
 import os
 from google.cloud import vision
@@ -8,8 +12,8 @@ from enum import Enum
 import re
 from fuzzywuzzy import fuzz 
 
-# Google Cloud Credentials
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.path.expanduser("/home/pratheebhak/Documents/biotag/pratheebha-karuppusamy-9222020-cdb465ac7042.json")
+# Update path to Google Cloud Credentials
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.path.expanduser("PATH TO GOOGLE API CREDENTIALS")
 
 
 def generateboundingbox(image, content, entities):
@@ -98,10 +102,6 @@ def generateboundingbox(image, content, entities):
         
     textBoxes = getTextandBounds(content)
     bounds = getBounds(entities, textBoxes)
-
-    # with BytesIO(urlopen(url).read()) as file:
-    #     inputImage = Image.open(file)
-    #     inputImage = inputImage.convert("RGBA")
     
     outImage = drawBoxes(image, bounds, "blue")
 

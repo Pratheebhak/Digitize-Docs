@@ -1,9 +1,5 @@
-"""
-Title       : extract.py
-Definition  : Extracts entities from the processed OCR text
-Input       : raw OCR text
-Output      : entities
-"""
+""" Extract entities from the handwritten OCR text """
+""" Code redacted due to copyright """
 
 import spacy
 import pandas as pd

@@ -10,6 +10,8 @@ import os
 import platform
 import shutil
 import time
+""" Detect and crop desirable(text) regions from the input image """
+
 from pathlib import Path
 
 import cv2

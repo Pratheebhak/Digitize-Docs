@@ -1,3 +1,5 @@
+""" Build an API in Python """
+
 from flask import Flask, request, jsonify
 
 # Create a Flask API

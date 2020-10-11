@@ -1,3 +1,5 @@
+""" Streamlit app for the model """
+
 import os
 import streamlit as st
 import biotag.detect as detect
@@ -22,9 +24,7 @@ def main():
       
 
 def saveImage(image_url):
-  """
-  Download and save the image from the given URL
-  """
+  " Download and save the image from the given URL "
 
   path = "inference/input"
 

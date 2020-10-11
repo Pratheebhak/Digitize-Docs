@@ -18,7 +18,7 @@ import imutils
 import cv2
 
 # Google Cloud Credentials
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.path.expanduser("/home/pratheebhak/Documents/biotag/pratheebha-karuppusamy-9222020-cdb465ac7042.json")
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.path.expanduser("PATH TO GOOGLE API CREDENTIALS")
 
 def handwrittenOCR(content):
 
