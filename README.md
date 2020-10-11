@@ -1,7 +1,7 @@
 # \<biotag\>
 Handwritten Labels Extraction and Tagging in Botanical Images
 
-**Parts of Scripts in this repository has been redacted due to copyright reasons**
+***Parts of Scripts in this repository has been redacted due to copyright reasons***
 
 ## Motivation
 
