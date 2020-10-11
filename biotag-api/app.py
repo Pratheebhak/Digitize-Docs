@@ -1,4 +1,4 @@
-""" Build an API in Python """
+""" API for the model """
 
 from flask import Flask, request, jsonify
 
