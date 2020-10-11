@@ -1,5 +1,7 @@
 # \<biotag\>
-Handwritten Labels Extraction and Tagging in Herbarium Images
+Handwritten Labels Extraction and Tagging in Botanical Images
+
+**Parts of Scripts in this repository has been redacted due to copyright reasons**
 
 ## Motivation
 
@@ -12,6 +14,7 @@ Clone the github repository and set biotag as the working directory.
 git clone https://github.com/Pratheebhak/biotag.git   
 cd ./biotag
 ```
+
 
 ### Requisites
 This repository has the following dependencies:
