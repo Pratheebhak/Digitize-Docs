@@ -19,47 +19,6 @@ def main():
     converts the imaged text into digital format and \
     extracts and categorizes useful information in the text.")
     
-  # Input the image url
-  url = st.sidebar.text_input("Enter image URL:")
-
-  if url:
-    # Download and save the input image   
-    saveImage(url)
-    st.sidebar.image("inference/input/image.jpg", caption="Input Plant Specimen Image", width=250, channels="RGB")
-
-    # Detect the text regions in the image
-    detect.detect()
-
-    # Select the detected images to be passed through the OCR
-    imageList = []
-    contentList = []
-    if len(os.listdir("inference/detection")) == 0:
-      # Select images in Output Folder
-      filename = "inference/output/*.jpg"
-      image = Image.open(filename)
-      imageList.append(image)
-      st.image(image, width=500, channel='RGB')
-      with io.open(filename, 'rb') as imageFile:
-        contentList.append(imageFile.read())
-
-    else:
-      # Select images in the Detection Folder
-      for filename in glob.glob('inference/detection/*.jpg'): 
-        image = Image.open(filename)
-        imageList.append(image)
-        path = (os.path.abspath(filename))
-        with io.open(path, 'rb') as imageFile:
-          contentList.append(imageFile.read()) 
-    
-    model = extract.handwrittenText()
-
-    st.subheader("Detected Text Label")
-    for image, content in zip(imageList, contentList):      
-      st.image(image, width=400, channel='RGB', caption='Detected Text Labels in the Input Image')
-      ocrtext, text = ocr.handwrittenOCR(content)
-      st.write("OCR Text: ", ocrtext)
-      st.write("Processed OCR Text: ", ' '.join([word for word in text]))
-      st.subheader("Extracted entities:")
       
 
 def saveImage(image_url):
