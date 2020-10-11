@@ -188,10 +188,10 @@ class handwrittenText:
   
         for token in text1:
             for country in self.countries:
-                if fuzz.ratio(token,country) > 95:
+                if fuzz.ratio(token,country) > 90:
                     geography.append(token)
             for state in self.states:
-                if fuzz.ratio(token,state) > 95:
+                if fuzz.ratio(token,state) > 90:
                     geography.append(token+" US")
   
         return list(set(geography))
