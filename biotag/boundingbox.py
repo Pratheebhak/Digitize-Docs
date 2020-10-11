@@ -1,9 +1,5 @@
-"""
-Title       : boundingbox.py
-Definition  : Generate bounding box coordinates for the extracted entities
-Input       : entities
-Output      : image with bounding boxes
-"""
+""" boundingbox.py : Generate bounding box coordinates for the extracted entities """
+
 import os
 from google.cloud import vision
 from google.cloud.vision import types
