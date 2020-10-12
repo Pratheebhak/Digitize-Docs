@@ -12,6 +12,7 @@ Handwritten Labels Extraction and Tagging in Botanical Images
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
   * [Optional: Docker](#docker-optional)
+* [Directory Structure](#directory-structure)
 * [Acknowledgements](#acknowledgements)
   
 
@@ -63,6 +64,29 @@ To containerize the Streamlit app,
 ```
 docker build -t biotag-streamlit:v1 -f DockerFile .
 docker run -p 8501:8501 biotag-streamlit:v1
+```
+## Directory Structure
+
+```
+.
++-- biotag
+|   +-- boundingbox.py - Generates bounding boxes for the extracted entities
+|   +-- detect.py - Detects the desired text regions in the input image URL
+|   +-- extract.py - Extracts entities from the OCR text
+|   +-- ocr.py - Extracts OCR text from the detected text regions
++-- data
+|   +-- Redacted due to copyrights
++-- inference
+|   +-- input - input image
+|   +-- output - output image with bounding boxes, bounding box coordinates of the detected objects
+|   +-- detection - cropped images of the detected text regions in the output image
++-- models - Object Detection helper module
++-- training - Object Detection Training Module Log
++-- utils - Object Detection helper module
++-- DockerFile - Docker file for the Streamlit app
++-- app.py - Streamlit app interface for the model
++-- requirements.txt - Dependencies
+
 ```
 
 ## Acknowledgements
