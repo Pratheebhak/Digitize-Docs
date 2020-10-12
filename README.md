@@ -20,11 +20,12 @@ Handwritten Labels Extraction and Tagging in Botanical Images
 Museums are manually digitizing millions of imaged documents of Herbarium sheets, which might take decades to complete at the current pace of manual transcription. This repository proposes a model using AI tools to automate the transcription process, to cut down the time significantly and facilitate faster and easier access to resources.
 
 ### Model Pipeline
-Picture 
+![Model Pipeline](/inference/Model.PNG)
 
 ### Object Detection Training Module
 
-YOLOv5 Object Detection was used to train an object detection model on custom dataset. The model training was implemented in Google Colab with free GPU
+YOLOv5 Object Detection Model developed by ultralytics was used to train an object detection model on custom dataset. The model training parameters and results are located in the training directory. The model training was implemented in Google colaboratory and can be accessed via the following link:
+* Google Colab with free GPU
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Pratheebhak/biotag/blob/master/training/YOLOv5_Training_Module.ipynb)
 
 ## Getting Started
@@ -64,6 +65,8 @@ docker run -p 8501:8501 biotag-streamlit:v1
 ```
 
 ## Acknowledgements
+* [Ultralytics YOLOv5](https://github.com/ultralytics/yolov5)
+
 
 
 
