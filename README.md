@@ -6,7 +6,7 @@ Handwritten Labels Extraction and Tagging in Botanical Images
 ## Table of Contents
 
 * [About the Project](#about-the-project)
-  * [Model Pipeline](#model-pipeline)
+  * [Model](#model)
   * [Object Detection Training Module](#object-detection-training-module)
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
@@ -19,7 +19,8 @@ Handwritten Labels Extraction and Tagging in Botanical Images
 
 Museums are manually digitizing millions of imaged documents of Herbarium sheets, which might take decades to complete at the current pace of manual transcription. This repository proposes a model using AI tools to automate the transcription process, to cut down the time significantly and facilitate faster and easier access to resources.
 
-### Model Pipeline
+### Model
+The model pipeline can be visualized as follows:
 ![Model Pipeline](/inference/Model.PNG)
 
 ### Object Detection Training Module
