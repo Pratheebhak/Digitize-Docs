@@ -1,4 +1,5 @@
 """ Streamlit app for the biotag model """
+
 import os
 import streamlit as st
 import biotag.detect as detect
@@ -66,11 +67,11 @@ def main():
       year = model.findYear(text)
       collector = model.findCollector(ocrtext)
       geography = model.findGeography(rawtext)
-      #genus, species = model.findScientificName(text)
-      st.write("Scientific Name: ", genus + " " + species)
+      # genus, species = model.findScientificName(text)
+      # st.write("Scientific Name: ", genus + " " + species)
       st.write("Collector: ", ','.join([val for val in collector]))
       st.write("Geography: ", ','.join([val for val in geography]))
-      #st.write("Year: ", ','.join([val for val in year]))
+      st.write("Year: ", ','.join([val for val in year]))
 
 
 def saveImage(image_url):
