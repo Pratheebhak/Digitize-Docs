@@ -1,9 +1,4 @@
-"""
-Title       : ocr.py
-Definition  : Extracts raw ocr text from input image URL
-Input       : image URL
-Output      : raw OCR text
-"""
+""" Extract OCR text from the input image """
 # pylint: disable=no-member
 
 import os

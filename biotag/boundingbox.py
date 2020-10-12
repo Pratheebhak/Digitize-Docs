@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-""" boundingbox.py : Generate bounding box coordinates for the extracted entities """
-=======
 """ Generate bounding box coordinates for the extracted entities """
->>>>>>> Update DockerFile
 
 import os
 from google.cloud import vision
