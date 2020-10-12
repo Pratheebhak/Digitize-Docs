@@ -7,6 +7,7 @@ Handwritten Labels Extraction and Tagging in Botanical Images
 
 * [About the Project](#about-the-project)
   * [Model Pipeline](#model-pipeline)
+  * [Object Detection Training Module](#object-detection-training-module)
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
@@ -24,7 +25,7 @@ Picture
 ### Object Detection Training Module
 
 YOLOv5 Object Detection was used to train an object detection model on custom dataset. The model training was implemented in Google Colab with free GPU
-![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)(https://colab.research.google.com/github/weiji14/deepbedmap/)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Pratheebhak/biotag/blob/master/training/YOLOv5_Training_Module.ipynb)
 
 ## Getting Started
 
