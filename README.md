@@ -36,5 +36,15 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
+### Docker (Optional)
+To containerize the Streamlit app,
+* Install Docker [Desktop](https://www.docker.com/products/docker-desktop) or [Engine](https://docs.docker.com/engine/)
+* Run the following commands for docker build and run
+```
+docker build -t biotag-streamlit:v1 -f DockerFile .
+docker run -p 8501:8501 biotag-streamlit:v1
+```
+
+
 
 
