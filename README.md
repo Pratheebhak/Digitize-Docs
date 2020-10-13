@@ -68,7 +68,8 @@ docker run -p 8501:8501 biotag-streamlit:v1
 ## Directory Structure
 
 ```
-+-- biotag
++-- source
+|   +-- training - Object Detection Training Module Logs
 |   +-- boundingbox.py - Generates bounding boxes for the extracted entities
 |   +-- detect.py - Detects the desired text regions in the input image URL
 |   +-- extract.py - Extracts entities from the OCR text
@@ -80,7 +81,6 @@ docker run -p 8501:8501 biotag-streamlit:v1
 |   +-- output - output image with bounding boxes, bounding box coordinates of the detected objects
 |   +-- detection - cropped images of the detected text regions in the output image
 +-- models - Object Detection helper module
-+-- training - Object Detection Training Module Logs
 +-- utils - Object Detection helper module
 +-- DockerFile - Docker file for the Streamlit app
 +-- app.py - Streamlit app interface for the model
