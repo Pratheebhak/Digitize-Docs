@@ -26,9 +26,7 @@ class handwrittenText:
     dfSpecies["species"] = dfSpecies["species"].str.lower()
     speciesset = set(dfSpecies["species"].dropna().unique().tolist())
     speciesList = list(speciesset)
-    dfSpecies["genus"] = dfSpecies["genus"].str.lower()
-
-    
+    dfSpecies["genus"] = dfSpecies["genus"].str.lower()    
 
     # Create a dictionary using the dataframes
     # key   : genus
