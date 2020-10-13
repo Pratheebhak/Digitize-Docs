@@ -1,16 +1,11 @@
-"""
-Title       : detect.py
-Definition  : Detect text labels in the input image
-Input       : image URL
-Output      : raw OCR text
-"""
+""" Detect and crop desirable(text) regions from the input image """
 
 import argparse
 import os
 import platform
 import shutil
 import time
-""" Detect and crop desirable(text) regions from the input image """
+
 
 from pathlib import Path
 

@@ -15,27 +15,15 @@ import cv2
 # Google Cloud Credentials
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.path.expanduser("PATH TO GOOGLE API CREDENTIALS")
 
-def handwrittenOCR(content):
+class handwrittenOCR:
 
-    def ocrText(content):
+    def ocrText(self, content):
         """
         Extract the raw OCR text from the input image using Google Cloud Vision API
         """
 
         try:
-            # img = imutils.url_to_image(url)
-        
-            # img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-            # img_pil = Image.fromarray(img)
-
-
-            # imgByteArr = BytesIO()
-            # img_pil.save(imgByteArr, format='PNG', quality = 50, optimize = True)
-            # context = imgByteArr.getvalue()
-
-            # with io.open(path, 'rb') as image_file:
-            #     content = image_file.read()
-           
+                       
             client = vision.ImageAnnotatorClient()
             image = vision.types.Image(content=content)            
 
@@ -43,9 +31,6 @@ def handwrittenOCR(content):
             document = response.full_text_annotation
             textdoc = document.text
 
-            # ocr = []
-            # keys = ['description', 'boundingBox', 'confidence', 'entity']
-            # chunks = dict.fromkeys(keys)
             text = []
     
             breaks = vision.enums.TextAnnotation.DetectedBreak.BreakType
@@ -68,15 +53,14 @@ def handwrittenOCR(content):
                                     line = ''                    
                         
                         text.append(para)
-                # chunks['description'] = para
-                # ocr.append([chunks])
+                
             return text, textdoc
 
         except Exception as e:
             print(e)
             return None, None
 
-    def processText(rawText):
+    def processText(self, rawText):
         """
         Preprocess the raw OCR text for fuzzymatching/entity recognition
         """
@@ -84,15 +68,7 @@ def handwrittenOCR(content):
         text = text.lower()
         text = re.sub(r'[^\w\s]', ' ', text)  
         text = text.split() 
-        # # Remove the irrelevant information from the color palette in images
-        # irrelevantList = ['0','1','2','3','4','5','6','7','8','9','10','cm','copyright','provided','is','the','a','by','harvard','herbarium',
-        #             'university','reserved']
-        # text = [string for string in text if string not in irrelevantList]
         return text
 
     
-    textpara, textdoc = ocrText(content)
-    cleanText = processText(textpara)
-   
 
-    return  textdoc, cleanText

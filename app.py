@@ -2,10 +2,10 @@
 
 import os
 import streamlit as st
-import biotag.detect as detect
-import biotag.ocr as ocr
-import biotag.extract as extract
-import biotag.boundingbox as box
+import source.detect as detect
+import source.ocr as ocr
+import source.extract as extract
+import source.boundingbox as box
 import requests 
 import shutil 
 from PIL import Image
@@ -53,12 +53,14 @@ def main():
         with io.open(path, 'rb') as imageFile:
           contentList.append(imageFile.read()) 
     
+    ocrmodel = ocr.handwrittenOCR()
     model = extract.handwrittenText()
 
     st.subheader("Detected Text Label")
     for image, content in zip(imageList, contentList):      
       st.image(image, width=400, channel='RGB', caption='Detected Text Labels in the Input Image')
-      ocrtext, text = ocr.handwrittenOCR(content)
+      raw, ocrtext = ocrmodel.ocrText(content)
+      text = ocrmodel.processText(ocrtext)
       st.write("OCR Text: ", ocrtext)
       st.write("Processed OCR Text: ", ' '.join([word for word in text]))
       
