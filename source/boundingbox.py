@@ -17,15 +17,8 @@ def generateboundingbox(image, content, entities):
  
     def drawBoxes(image, bounds, color):
         """
-        Definition: Draw bounding boxes on the image from the input list of bounding box coordinates using the appropriate color
-        coding, which coressponds to the label(entity)
-
-        Input     : image  - input image
-                    bounds - list of bounding box coordinates
-                    color  - color coded labels(entities)
-                    width  - bounding box line width
-        Output    : image overlaid with bounding boxes 
-       
+        Draw bounding boxes on the image from the input list of bounding box coordinates using the appropriate color
+        coding, which corresponds to the label(entity)      
         """
         draw = ImageDraw.Draw(image)
         for bound in bounds:
