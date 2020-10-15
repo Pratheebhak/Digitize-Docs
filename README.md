@@ -28,7 +28,7 @@ The model pipeline can be visualized as follows:
 
 YOLOv5 Object Detection Model developed by ultralytics was used to train an object detection model on custom dataset. The model training parameters and results are located in the training directory. The model training was implemented in Google colaboratory and can be accessed via the following link:
 * Google Colab with free GPU
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Pratheebhak/biotag/blob/master/training/YOLOv5_Training_Module.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Pratheebhak/biotag/blob/master/source/training/YOLOv5_Training_Module.ipynb)
 
 ## Getting Started
 
