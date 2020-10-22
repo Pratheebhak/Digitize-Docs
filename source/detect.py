@@ -6,7 +6,6 @@ import platform
 import shutil
 import time
 
-
 from pathlib import Path
 
 import cv2
@@ -18,28 +17,39 @@ import numpy as np
 from models.experimental import attempt_load
 from utils.datasets import LoadStreams, LoadImages
 from utils.general import (
-    check_img_size, non_max_suppression, apply_classifier, scale_coords,
-    xyxy2xywh, plot_one_box, strip_optimizer, set_logging)
+    check_img_size,
+    non_max_suppression,
+    apply_classifier,
+    scale_coords,
+    xyxy2xywh,
+    plot_one_box,
+    strip_optimizer,
+    set_logging,
+)
 from utils.torch_utils import select_device, load_classifier, time_synchronized
 
 
 def detect():
-    
+
     agnostic_nms = False
     augment = False
     classes = None
     conf_thres = 0.4
-    device = ''
+    device = ""
     imgsz = 640
     iou_thres = 0.5
-    out = 'inference/output'
+    out = "inference/output"
     save_txt = True
-    source = 'inference/input/image.jpg'
+    source = "inference/input/image.jpg"
     update = False
     view_img = False
-    weights = 'training/weights.pt'
+    weights = "training/weights.pt"
 
-    webcam = source.isnumeric() or source.startswith(('rtsp://', 'rtmp://', 'http://')) or source.endswith('.txt')
+    webcam = (
+        source.isnumeric()
+        or source.startswith(("rtsp://", "rtmp://", "http://"))
+        or source.endswith(".txt")
+    )
 
     # Initialize
     set_logging()
@@ -48,7 +58,7 @@ def detect():
         shutil.rmtree(out)  # delete output folder
     os.makedirs(out)  # make new output folder
     # half = device.type != 'cpu'  # half precision only supported on CUDA
-    detpath = 'inference/detection'
+    detpath = "inference/detection"
     if os.path.exists(detpath):
         shutil.rmtree(detpath)  # delete output folder
     os.makedirs(detpath)
@@ -60,8 +70,10 @@ def detect():
     # Second-stage classifier
     classify = False
     if classify:
-        modelc = load_classifier(name='resnet101', n=2)  # initialize
-        modelc.load_state_dict(torch.load('weights/resnet101.pt', map_location=device)['model'])  # load weights
+        modelc = load_classifier(name="resnet101", n=2)  # initialize
+        modelc.load_state_dict(
+            torch.load("weights/resnet101.pt", map_location=device)["model"]
+        )  # load weights
         modelc.to(device).eval()
 
     save_img = True
@@ -69,7 +81,7 @@ def detect():
     save_obj = True
     dataset = LoadImages(source, img_size=imgsz)
 
-    names = model.module.names if hasattr(model, 'module') else model.names
+    names = model.module.names if hasattr(model, "module") else model.names
     colors = [[random.randint(0, 255) for _ in range(3)] for _ in range(len(names))]
 
     # Run inference
@@ -89,7 +101,9 @@ def detect():
         pred = model(img, augment=augment)[0]
 
         # Apply NMS
-        pred = non_max_suppression(pred, conf_thres, iou_thres, classes=classes, agnostic=agnostic_nms)
+        pred = non_max_suppression(
+            pred, conf_thres, iou_thres, classes=classes, agnostic=agnostic_nms
+        )
         t2 = time_synchronized()
 
         # Apply Classifier
@@ -99,13 +113,15 @@ def detect():
         # Process detections
         for i, det in enumerate(pred):  # detections per image
             if webcam:  # batch_size >= 1
-                p, s, im0 = path[i], '%g: ' % i, im0s[i].copy()
+                p, s, im0 = path[i], "%g: " % i, im0s[i].copy()
             else:
-                p, s, im0 = path, '', im0s
+                p, s, im0 = path, "", im0s
 
             save_path = str(Path(out) / Path(p).name)
-            txt_path = str(Path(out) / Path(p).stem) + ('_%g' % dataset.frame if dataset.mode == 'video' else '')
-            s += '%gx%g ' % img.shape[2:]  # print string
+            txt_path = str(Path(out) / Path(p).stem) + (
+                "_%g" % dataset.frame if dataset.mode == "video" else ""
+            )
+            s += "%gx%g " % img.shape[2:]  # print string
             gn = torch.tensor(im0.shape)[[1, 0, 1, 0]]  # normalization gain whwh
             if det is not None and len(det):
                 # Rescale boxes from img_size to im0 size
@@ -114,49 +130,64 @@ def detect():
                 # Print results
                 for c in det[:, -1].unique():
                     n = (det[:, -1] == c).sum()  # detections per class
-                    s += '%g %ss, ' % (n, names[int(c)])  # add to string
+                    s += "%g %ss, " % (n, names[int(c)])  # add to string
 
                 # Write results
                 for *xyxy, conf, cls in det:
                     if save_txt:  # Write to file
-                        xywh = (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn).view(-1).tolist()  # normalized xywh
-                        with open(txt_path + '.txt', 'a') as f:
-                            f.write(('%g ' * 5 + '\n') % (cls, *xywh))  # label format
+                        xywh = (
+                            (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) / gn)
+                            .view(-1)
+                            .tolist()
+                        )  # normalized xywh
+                        with open(txt_path + ".txt", "a") as f:
+                            f.write(("%g " * 5 + "\n") % (cls, *xywh))  # label format
 
                     if save_img or view_img:  # Add bbox to image
-                        label = '%s %.2f' % (names[int(cls)], conf)
-                        plot_one_box(xyxy, im0, label=label, color=colors[int(cls)], line_thickness=3)
+                        label = "%s %.2f" % (names[int(cls)], conf)
+                        plot_one_box(
+                            xyxy,
+                            im0,
+                            label=label,
+                            color=colors[int(cls)],
+                            line_thickness=3,
+                        )
 
                     if save_obj:
                         # cv2.imwrite(detpath, im0)
                         for k in range(len(det)):
                             if int(cls) == 0:
-                                x,y,w,h=int(xyxy[0]), int(xyxy[1]), int(xyxy[2] - xyxy[0]), int(xyxy[3] - xyxy[1])                   
+                                x, y, w, h = (
+                                    int(xyxy[0]),
+                                    int(xyxy[1]),
+                                    int(xyxy[2] - xyxy[0]),
+                                    int(xyxy[3] - xyxy[1]),
+                                )
                                 img_ = im0.astype(np.uint8)
-                                crop_img=img_[y:y+ h, x:x + w]                          
-                                
+                                crop_img = img_[y : y + h, x : x + w]
+
                                 #!!rescale image !!!
-                                filename = label+ '{:}.jpg'.format(+1)
-                                filepath=os.path.join(r'./inference/detection/', filename)
-                                cv2.imwrite(filepath, crop_img) 
+                                filename = label + "{:}.jpg".format(+1)
+                                filepath = os.path.join(
+                                    r"./inference/detection/", filename
+                                )
+                                cv2.imwrite(filepath, crop_img)
 
             # Print time (inference + NMS)
-            print('%sDone. (%.3fs)' % (s, t2 - t1))
+            print("%sDone. (%.3fs)" % (s, t2 - t1))
 
             # Stream results
             if view_img:
                 cv2.imshow(p, im0)
-                if cv2.waitKey(1) == ord('q'):  # q to quit
+                if cv2.waitKey(1) == ord("q"):  # q to quit
                     raise StopIteration
 
             # Save results (image with detections)
             if save_img:
-                if dataset.mode == 'images':
+                if dataset.mode == "images":
                     cv2.imwrite(save_path, im0)
-                    
 
     if save_txt or save_img:
-        print('Results saved to %s' % Path(out))
+        print("Results saved to %s" % Path(out))
 
-    print('Done. (%.3fs)' % (time.time() - t0))
-
+    print("Done. (%.3fs)" % (time.time() - t0))
