@@ -22,7 +22,9 @@ Museums are manually digitizing millions of imaged documents of Herbarium sheets
 
 ### Model
 The model pipeline can be visualized as follows:
-![Model Pipeline](/images/Model.PNG)
+<p align="center">
+  <img src="https://github.com/Pratheebhak/biotag/blob/master/images/Model.PNG" alt="Model Pipeline"/>
+</p>
 
 ### Object Detection Training Module
 
