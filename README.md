@@ -56,6 +56,7 @@ pip install -r requirements.txt
 ```
 To run the Streamlit app,
 ```
+cd ./source
 streamlit run app.py
 ```
 
