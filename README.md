@@ -22,7 +22,7 @@ Museums are manually digitizing millions of imaged documents of Herbarium sheets
 
 ### Model
 The model pipeline can be visualized as follows:
-![Model Pipeline](/inference/Model.PNG)
+![Model Pipeline](/images/Model.PNG)
 
 ### Object Detection Training Module
 
