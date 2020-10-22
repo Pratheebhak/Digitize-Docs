@@ -68,23 +68,27 @@ docker run -p 8501:8501 biotag-streamlit:v1
 ## Directory Structure
 
 ```
-+-- source
-|   +-- training - Object Detection Training Module Logs
-|   +-- boundingbox.py - Generates bounding boxes for the extracted entities
-|   +-- detect.py - Detects the desired text regions in the input image URL
-|   +-- extract.py - Extracts entities from the OCR text
-|   +-- ocr.py - Extracts OCR text from the detected text regions
-+-- data
-|   +-- Redacted due to copyrights
-+-- inference
-|   +-- input - input image
-|   +-- output - output image with bounding boxes, bounding box coordinates of the detected objects
-|   +-- detection - cropped images of the detected text regions in the output image
-+-- models - Object Detection helper module
-+-- utils - Object Detection helper module
-+-- DockerFile - Docker file for the Streamlit app
-+-- app.py - Streamlit app interface for the model
-+-- requirements.txt - Dependencies
+.
+├── source
+│   ├── data               - Redacted due to copyrights
+│   └── inference          - Object Detection Images         
+│       ├── input          - input image       
+│       ├── output         - output image with bounding boxes, bounding box coordinates of the detected objects
+│       └── detection      - cropped images of the detected text regions in the output image
+│   ├── models             - Object Detection helper module
+│   ├── training           - Object Detection Training Module Logs
+│   ├── utils              - Object Detection helper module
+│   ├── app.py             - Streamlit app interface for the model
+│   ├── boundingbox.py     - Generates bounding boxes for the extracted entities
+│   ├── detect.py          - Detects the desired text regions in the input image URL
+│   ├── extract.py         - Extracts entities from the OCR text
+│   └── ocr.py             - Extracts OCR text from the detected text regions
+├── images
+│   └── README images
+├── .gitignore
+├── DockerFile             - Docker file for the Streamlit app
+├── README.md              - README Markdown File
+└── requirements.txt       - Dependencies
 
 ```
 
