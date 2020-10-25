@@ -18,7 +18,7 @@ Handwritten Labels Extraction and Tagging in Botanical Images
 
 ## About the Project
 
-Museums are manually digitizing millions of imaged documents of Herbarium sheets, which might take decades to complete at the current pace of manual transcription. This repository proposes a model using AI tools to automate the transcription process, to cut down the time significantly and facilitate faster and easier access to resources.
+Museums are manually digitizing millions of imaged documents of Herbarium sheets, which might take decades to complete at the current pace of manual transcription. This repository proposes a model using cutting-edge AI tools to automate the transcription process, to cut down the time significantly and facilitate faster and easier access to resources. 
 
 ### Model
 The model pipeline can be visualized as follows:
