@@ -7,6 +7,7 @@ Handwritten Labels Extraction and Tagging in Botanical Images
 
 * [About the Project](#about-the-project)
   * [Model](#model)
+  * [Demo](#demo)
   * [Object Detection Training Module](#object-detection-training-module)
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
@@ -19,6 +20,11 @@ Handwritten Labels Extraction and Tagging in Botanical Images
 ## About the Project
 
 Museums are manually digitizing millions of imaged documents of Herbarium sheets, which might take decades to complete at the current pace of manual transcription. This repository proposes a model using cutting-edge AI tools to automate the transcription process, to cut down the time significantly and facilitate faster and easier access to resources. 
+
+### Demo
+<p align="center">
+  <img src="https://github.com/Pratheebhak/biotag/blob/master/images/finaldemo.gif" alt="<biotag> Demo"/>
+</p>
 
 ### Model
 The model pipeline can be visualized as follows:
