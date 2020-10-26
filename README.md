@@ -90,6 +90,7 @@ docker run -p 8501:8501 biotag-streamlit:v1
 │   ├── app.py             - Streamlit app interface for the model
 │   ├── boundingbox.py     - Generates bounding boxes for the extracted entities
 │   ├── detect.py          - Detects the desired text regions in the input image URL
+│   ├── evaluation.py      - Fuzzy Matching Entity Extraction Analysis
 │   ├── extract.py         - Extracts entities from the OCR text
 │   └── ocr.py             - Extracts OCR text from the detected text regions
 ├── images
