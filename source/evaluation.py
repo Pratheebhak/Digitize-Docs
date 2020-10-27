@@ -4,14 +4,16 @@ import extract as extract
 import ocr as ocr
 import pandas as pd
 import numpy as np
+from fuzzywuzzy import fuzz
 
 # Read the csv file to be evaluated
 df = pd.read_csv("data/ocrdata.csv")
 
 # Process Text
+df["Processed Text"] = df["OCR Text"].str.split()
 ocrmodel = ocr.handwrittenOCR()
-df["Processed Text"] = df["OCR Text"].apply(ocrmodel.processText)
-df["Processed Text"] = df["Processed Text"].split()
+df["Processed Text"] = df["Processed Text"].apply(ocrmodel.processText)
+
 
 # Predict the entities from the input OCR text
 model = extract.handwrittenText()
@@ -24,27 +26,29 @@ df["Predicted Year"] = df["Processed Text"].dropna().apply(model.findYear)
 
 # Calculate the number of approximately matched entities
 df["Barcode Matches"] = np.where(df["Barcode"] == df["Predicted Barcode"], True, False)
-df["Scientific Name Matches"] = np.where(
-    fuzz.partial_ratio(df["Scientific Name"], df["Predicted Scientific Name"]) == 100,
-    True,
-    False,
+df["Scientific Name Matches"] = df.apply(
+    lambda x: fuzz.partial_ratio(x["Scientific Name"], x["Predicted Scientific Name"]),
+    axis=1,
 )
-df["Geography Matches"] = np.where(
-    fuzz.partial_ratio(df["Geography"], df["Predicted Geography"]) == 100, True, False
+df["Geography Matches"] = df.apply(
+    lambda x: fuzz.partial_ratio(x["Geography"], x["Predicted Geography"]),
+    axis=1,
 )
-df["Collector Matches"] = np.where(
-    fuzz.partial_ratio(df["Collector"], df["Predicted Collector"]) == 100, True, False
+df["Collector Matches"] = df.apply(
+    lambda x: fuzz.partial_ratio(x["Collector"], x["Predicted Collector"]),
+    axis=1,
 )
-df["Year Matches"] = np.where(
-    fuzz.partial_ratio(df["Year"], df["Predicted Year"]) == 100, True, False
+df["Year Matches"] = df.apply(
+    lambda x: fuzz.partial_ratio(x["Year"], x["Predicted Year"]),
+    axis=1,
 )
 
 # Calculate and Print Accuracy for each entity
-barcode_accuracy = df["Barcode Matches"].values.sum() / df.shape[0]
-scientific_name_accuracy = df["Scientific Name Matches"].values.sum() / df.shape[0]
-geography_accuracy = df["Geography Matches"].values.sum() / df.shape[0]
-collector_accuracy = df["Collector Matches"].values.sum() / df.shape[0]
-year_accuracy = df["Year Matches"].values.sum() / df.shape[0]
+barcode_accuracy = 100 * df["Barcode Matches"].values.sum() / df.shape[0]
+scientific_name_accuracy = df["Scientific Name Matches"].mean(skipna=True)
+geography_accuracy = df["Geography Matches"].mean(skipna=True)
+collector_accuracy = df["Collector Matches"].mean(skipna=True)
+year_accuracy = df["Year Matches"].mean(skipna=True)
 
 # Print the accuracies
 print("******************Accuracy******************")
@@ -56,5 +60,5 @@ print("Year             : {:}".format(year_accuracy))
 
 
 # Export the predicted results to a csv file
-outfile = "/data/outputocr.csv"
+outfile = "data/outputocr.csv"
 df.to_csv(outfile, index=True)
