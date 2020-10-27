@@ -14,7 +14,7 @@ Handwritten Labels Extraction and Tagging in Botanical Images
   * [Installation](#installation)
   * [Optional: Docker](#docker-optional)
 * [Directory Structure](#directory-structure)
-* [Acknowledgements](#acknowledgements)
+* [References](#references)
   
 
 ## About the Project
@@ -22,12 +22,19 @@ Handwritten Labels Extraction and Tagging in Botanical Images
 Museums are manually digitizing millions of imaged documents of Herbarium sheets, which might take decades to complete at the current pace of manual transcription. This repository proposes a model using cutting-edge AI tools to automate the transcription process, to cut down the time significantly and facilitate faster and easier access to resources. 
 
 ### Model
-The model pipeline can be visualized as follows:
+The pipeline consists of three stages and can be visualized as shown below:
+* Object Detection : To detect the desirable i.e., text and barcode regions in the input botanical image.
+* Optical Character Recognition : To recognize and extract the text in the handwritten text regions.
+* Entity Extraction: To extract the entities from the extracted OCR text.A set of algorithms are adopted for accurately extracting the entities from the OCR text and are listed as follows:
+  * Fuzzy Matching: Group of techniques used to match strings based on a pattern or set of rules
+  * [Levenshtein Distance](https://en.wikipedia.org/wiki/Levenshtein_distance) is the metric used to measure string similarity
+  * Named Entity Recognition and Rule based Matching
 <p align="center">
   <img src="https://github.com/Pratheebhak/biotag/blob/master/images/Model.PNG" alt="Model Pipeline"/>
 </p>
 
 ### Demo
+The streamlit app demo of the model is demonstrated using the following gif:
 <p align="center">
   <img src="https://github.com/Pratheebhak/biotag/blob/master/images/finaldemo.gif" alt="<biotag> Demo"/>
 </p>
@@ -103,7 +110,7 @@ docker run -p 8501:8501 biotag-streamlit:v1
 
 ```
 
-## Acknowledgements
+## References
 * [Ultralytics YOLOv5](https://github.com/ultralytics/yolov5)
 
 
